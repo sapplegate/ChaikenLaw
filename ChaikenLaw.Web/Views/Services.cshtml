@@ -1,0 +1,73 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Services>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+
+@{
+    Layout = "master.cshtml";
+    @*var backgroundImage = Model.HeroBackgroundImage != null ? Model.HeroBackgroundImage.Url : String.Empty;*@
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+    var startNode = Umbraco.Content(Model.Id);
+    var services = startNode.Children.OrderBy(x => x.CreateDate).ToList();
+
+    int serviceIndex = 1;
+
+    ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>("HeroBannerImage", fallback: Fallback.ToAncestors);
+}
+
+<div class="services">
+
+    <header>
+        @if (Model.HeroBannerDisplayPageTitle != null)
+        {
+            <h1>@Model.Name</h1>
+        }
+        @if (heroBannerImage != null)
+        {
+            <picture>     
+                <source media="(min-width: 576px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+                <source media="(min-width: 0px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Mobile"))">
+                <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+            </picture>
+            
+            @*<img src="@Model.HeroBannerImageCrop.Url" />*@
+        }
+        @*@if (Model.HeroBannerImage != null)
+            {
+                <img src="@Model.HeroBannerImage.Url" />
+            }*@
+    </header>
+    <section>
+        <div class="row ml-0 mr-0">
+            <div class="col-md-6 col-sm-12 p-0">
+                <div class="container content-padding-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>@Model.ServicesBodyText</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-0 section-alt">
+                <div class="container content-padding-right">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @foreach (ContentModels.Service service in services)
+                            {
+                                <div class="service">
+                                    <h5>@service.ServiceSubtitle</h5>
+                                    <h3>@service.Name</h3>
+                                    <a class="btn" href="@service.Url">Read More&nbsp;&nbsp;<i class="fa fa-chevron-right"></i></a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>

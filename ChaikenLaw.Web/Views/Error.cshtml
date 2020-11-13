@@ -1,0 +1,22 @@
+﻿@using ContentModels = Umbraco.Web.PublishedModels;
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Error>
+
+@{
+    Layout = "master.cshtml";
+}
+
+@{
+    // get banner data
+    //var headerText = Model.Content.GetPropertyValue("headerText");
+    //var headerSubtext = Model.Content.GetPropertyValue("subtext");
+    //IPublishedContent pageBannerImage = Model.Content.GetPropertyValue<IPublishedContent>("backgroundImage");
+}
+
+<main>
+    <div class="container">
+        <div class="row">
+            @Model.Value("contentHTML")
+        </div>
+    </div>
+</main>

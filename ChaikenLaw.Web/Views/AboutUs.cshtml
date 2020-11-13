@@ -1,0 +1,168 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.AboutUs>
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+    @*var backgroundImage = Model.HeroBackgroundImage != null ? Model.HeroBackgroundImage.Url : String.Empty;*@
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+
+    ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>
+    ("HeroBannerImage", fallback: Fallback.ToAncestors);
+
+    var startNode = Umbraco.Content(Model.Id);
+    var people = startNode.Children.OrderBy(x => x.CreateDate).ToList();
+
+    int personIndex = 0;
+    }
+
+    <div class="about">
+
+        <header>
+            @if (Model.HeroBannerDisplayPageTitle != null)
+            {
+            <h1>@Model.Name</h1>
+            }
+            @*@if (Model.HeroBannerImage != null)
+            {
+            <img src="@Model.HeroBannerImage.Url" />
+            }*@
+            @if (heroBannerImage != null)
+            {
+            <picture>
+                <source media="(min-width: 576px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Desktop"))">
+                <source media="(min-width: 0px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Mobile"))">
+                <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Desktop"))">
+            </picture>
+
+            @*<img src="@Model.HeroBannerImageCrop.Url" />*@
+            }
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-8">
+                        <p>
+                            @Html.ReplaceLineBreaksForHtml(Model.HeroBannerHeaderText)
+                        </p>
+                        @*<p>
+                            <a class="btn" href="@heroBannerLink.Url">
+                                @Model.HeroBannerButtonText
+                                &nbsp;<i class="fa fa-chevron-right"></i>
+                            </a>
+                        </p>*@
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section>
+
+
+            @foreach (ContentModels.Person person in people)
+            {
+            ImageCropperValue personImage = person.Value<ImageCropperValue>
+                ("PersonImage", fallback: Fallback.ToAncestors);
+
+                <div class="row ml-0 mr-0 about-details">
+                    @if (personIndex % 2 == 0) {
+                        <div class="col-md-6 col-sm-12 p-0">
+                            <div class="container container-img">
+                                <div class="row">
+                                    <div class="col-md-12 p-0">
+                                        <picture>
+                                            <source media="(min-width: 576px)" srcset="@(personImage.Src + personImage.GetCropUrl(" Desktop"))">
+                                            <source media="(min-width: 0px)" srcset="@(personImage.Src + personImage.GetCropUrl(" Mobile"))">
+                                            <img src="@(personImage.Src + personImage.GetCropUrl(" Desktop"))">
+                                        </picture>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 p-0 section-alt section-details">
+                            <div class="container content-padding-right">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>@person.Name</h2>
+                                        <p>@person.PersonExcerpt</p>
+                                        <a class="btn btn-more">
+                                            <i class="fa fa-chevron-left"></i>
+                                            &nbsp;
+                                            Read More
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="btn-close"></a>
+                        </div>
+                        
+                    }
+                    else
+                    {
+                        <div class="col-md-6 col-sm-12 p-0 section-alt">
+                            <div class="container content-padding-left">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>@person.Name</h2>
+                                        <p>@person.PersonExcerpt</p>
+                                        <a class="btn btn-more" href="#">
+                                            Read More
+                                            &nbsp;
+                                            <i class="fa fa-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 p-xs-0">
+                            <div class="container container-img">
+                                <div class="row">
+                                    <div class="col-md-12 p-0">
+                                        <picture>
+                                            <source media="(min-width: 576px)" srcset="@(personImage.Src + personImage.GetCropUrl(" Desktop"))">
+                                            <source media="(min-width: 0px)" srcset="@(personImage.Src + personImage.GetCropUrl(" Mobile"))">
+                                            <img src="@(personImage.Src + personImage.GetCropUrl(" Desktop"))">
+                                        </picture>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        }
+                    </div>
+                if (personIndex == 1) {
+                    <div class="row m-0">
+                        <div class="col-md-12 section-quote">
+                            <p>"@Model.AboutQuoteText"</p>
+                            <span class="quote-author">@Model.AboutQuoteAuthor</span>
+                        </div>
+                    </div>
+                }
+
+                personIndex++;
+                }
+
+            
+            
+        </section>
+
+
+    </div>
+
+
+    @section scripts {
+
+    <script>
+        $('a.btn-more').click(function () {
+            $(this).closest('.section-details')
+                .addClass('col-md-12')
+                .addClass('col-two')
+                .addClass('expanded');
+        })
+
+        $('a.btn-close').click(function () {
+            $(this).closest('.section-details')
+                .removeClass('col-md-12')
+                .removeClass('col-two')
+                .removeClass('expanded');
+        })
+    </script>
+    }

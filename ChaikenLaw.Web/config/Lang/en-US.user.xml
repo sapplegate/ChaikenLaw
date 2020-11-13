@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+<area alias="login">
+    <key alias="greeting0">Sign In</key>
+    <key alias="greeting1">Sign In</key>
+    <key alias="greeting2">Sign In</key>
+    <key alias="greeting3">Sign In</key>
+    <key alias="greeting4">Sign In</key>
+    <key alias="greeting5">Sign In</key>
+    <key alias="greeting6">Sign In</key>
+  </area>
+</language>
