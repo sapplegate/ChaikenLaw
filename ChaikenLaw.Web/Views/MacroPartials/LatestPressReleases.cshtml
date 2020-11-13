@@ -1,0 +1,75 @@
+﻿@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web;
+
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    var startNodeId = Model.MacroParameters["startNodeId"] != null ? Model.MacroParameters["startNodeId"] : Model.Content.Id;
+    var numberOfPosts = 5;
+}
+
+@if (startNodeId != null)
+{
+    var startNode = Umbraco.Content(startNodeId);
+
+    if (startNode == null)
+    {
+        return;
+    }
+
+    //Gets all blogposts to calculate pages
+    var blogposts = startNode.Children<ContentModels.PressRelease>().OrderByDescending(x => x.PressReleaseDate).ToList();
+    var pageCount = (int)Math.Ceiling((double)blogposts.Count / (double)numberOfPosts);
+    //gets the page from the querystring and sets it to one if it is out of range
+    var page = 1;
+
+    //Gets the blogposts for the current page
+    var pagedPressReleases = blogposts.Skip((page - 1) * numberOfPosts).Take(numberOfPosts).ToList();
+
+    if (pagedPressReleases.Count > 0)
+    {
+        foreach (ContentModels.PressRelease post in pagedPressReleases)
+        {
+            <div class="press-release">
+                <div class="press-release-date">@post.PressReleaseDate.ToString("MMMM d, yyyy")</div>
+                    @*<small class="blogpost-cat">
+                        @Html.Partial("~/Views/Partials/CategoryLinks.cshtml", post.Categories)
+                    </small>*@
+                <h3>@post.Name</h3>
+                <a href="@post.PressReleaseLinkUrl.Url" target="_blank">Read More <i class="fa fa-chevron-right"></i></a>
+                @*<div class="blogpost-excerpt">@post.Excerpt</div>*@
+            </div>                
+        }
+    }
+
+    @*if (blogposts.Count > numberOfPosts)
+    {
+        <div class="pagination">
+            <nav class="nav-bar nav-bar--center">
+                @if (page <= 1)
+                {
+                    <span class="nav-link nav-link--black nav-link--disabled">Prev</span>
+                }
+                else
+                {
+                    <a class="nav-link nav-link--black" href="@(Model.Content.Url + "?page=" + (page - 1))">Prev</a>
+                }
+
+                @for (int i = 1; i <= pageCount; i++)
+                {
+                    <a class="nav-link nav-link--black @(page == i ? " nav-link--active" : null)" href="@(Model.Content.Url + "?page=" + i)">@i</a>
+                }
+                @if (page == pageCount)
+                {
+                    <span class="nav-link nav-link--black nav-link--disabled">Next</span>
+                }
+                else
+                {
+                    <a class="nav-link nav-link--black" href="@(Model.Content.Url + "?page=" + (page + 1))">Next</a>
+                }
+
+            </nav>
+        </div>
+    }*@
+}
+

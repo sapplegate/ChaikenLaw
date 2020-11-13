@@ -1,0 +1,141 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Results>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+
+@{
+    Layout = "master.cshtml";
+    @*var backgroundImage = Model.HeroBackgroundImage != null ? Model.HeroBackgroundImage.Url : String.Empty;*@
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+    var startNode = Umbraco.Content(Model.Id);
+    var results = startNode.Children.OrderBy(x => x.CreateDate).ToList();
+
+    ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>("HeroBannerImage", fallback: Fallback.ToAncestors);
+
+    int resultItemIndex = 1;
+    int resultIndex = 1;
+}
+
+<div class="results">
+
+    <header>
+        @if (Model.HeroBannerDisplayPageTitle != null)
+        {
+            <h1>@Model.Name</h1>
+        }
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8">
+                    <p>
+                        @Model.HeroBannerHeaderText
+                    </p>
+                </div>
+            </div>
+        </div>
+        @if (heroBannerImage != null)
+        {
+            <picture>
+                <source media="(min-width: 576px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+                <source media="(min-width: 0px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Mobile"))">
+                <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+            </picture>
+        }
+
+    </header>
+    <section>
+        <div class="row ml-0 mr-0">
+            <div class="col-md-6 col-sm-12 p-0 section-alt">
+                <div class="container content-padding-left">
+                    <div class="row ml-0 mr-0">
+                        <div class="col-md-12">
+                            @foreach (ContentModels.Result result in results)
+                            {
+                                if (resultItemIndex == 1)
+                                {
+                                    <div class="result active" style="display:block;" data-index="@resultItemIndex">
+                                        <h2>@result.Name</h2>
+                                        @result.ResultBodyContent
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="result" style="display:none;" data-index="@resultItemIndex">
+                                        <h2>@result.Name</h2>
+                                        @result.ResultBodyContent
+                                    </div>
+                                }
+
+
+
+                                resultItemIndex++;
+                            }
+
+
+                            <ul class="pagination">
+
+                                @foreach (ContentModels.Result result in results)
+                                {
+                                    if (resultIndex == 1)
+                                    {
+                                        <li class="page-item"><a class="page-link active" data-index="@resultIndex">@resultIndex</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item"><a class="page-link" data-index="@resultIndex">@resultIndex</a></li>
+                                    }
+                                    resultIndex++;
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-0 section-quote">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="quote-text">"@Model.ResultsQuoteText"</div>
+                            <div class="quote-author">@Model.ResultsQuoteAuthor</div>
+
+                        </div>
+                    </div>
+                </div>
+                <img src="@Model.ResultsBodyImage.Url" />
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        $('a.page-link').click(function () {
+
+            if (!$(this).hasClass('active')) {
+                var index = $(this).data('index');
+
+                $('.page-link.active').toggleClass('active');
+                $(this).toggleClass('active');
+
+
+                $(".result.active")
+                    .fadeOut(200, function () {
+                        $(".result[data-index='" + index + "']")
+                            .fadeIn(200, function () { })
+                            .toggleClass('active');
+                            
+                    })
+                    .toggleClass('active');
+                    
+
+               
+            }
+        })
+    </script>
+}

@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Blogpost>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+}
+
+@*@Html.Partial("~/Views/Partials/SectionHeader.cshtml")*@
+
+
+
+<div class="blogpost">
+    <header>
+        @if (Model.HeroBannerDisplayPageTitle != null)
+        {
+            <h1>@Model.Name</h1>
+        }
+        @*@if (Model.HeroBannerImage != null)
+        {
+            <img src="@Model.HeroBannerImage.Url" />
+        }*@
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-12">
+                    @*<p>
+                            @Model.HeroBannerHeaderText
+                        </p>
+                        <p>
+                            <a class="btn" href="@heroBannerLink.Url">
+                                @Model.HeroBannerButtonText
+                                &nbsp;<i class="fa fa-chevron-right"></i>
+                            </a>
+                        </p>*@
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="row ml-0 mr-0">
+            <div class="col-md-12 col-sm-12 p-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>@Model.BlogPostContent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+@*
+    <!--<section class="section">
+        <div class="container">
+            <article>
+                <div class="blogpost-meta">
+                    <small class="blogpost-date">@Model.CreateDate.ToShortDateString()</small>
+                    <span class="blogpost-cat">
+                        @Html.Partial("~/Views/Partials/CategoryLinks.cshtml", Model.Categories)
+                    </span>
+                </div>
+                <h3>@Model.Excerpt</h3>
+                @Html.GetGridHtml(Model, "bodyText", "bootstrap3-fluid")-->
+                <!-- todo: implement discus comments -->
+            <!--</article>
+        </div>
+    </section>-->*@

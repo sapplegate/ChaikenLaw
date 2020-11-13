@@ -1,0 +1,76 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Service>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+
+@{
+    Layout = "master.cshtml";
+
+    ImageCropperValue serviceImage = Model.Value<ImageCropperValue>("ServiceImage", fallback: Fallback.ToAncestors);
+}
+
+<div class="services">
+
+    <header>
+        <h1>@Model.ServiceSubtitle</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8">
+                    <h2>@Model.Name</h2>
+                    @*<p>
+                            @Model.HeroBannerHeaderText
+                        </p>
+                        <p>
+                            <a class="btn" href="@heroBannerLink.Url">
+                                @Model.HeroBannerButtonText
+                                &nbsp;<i class="fa fa-chevron-right"></i>
+                            </a>
+                        </p>*@
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="row ml-0 mr-0">
+            <div class="col-md-6 col-sm-12 p-0">                
+                <div class="row section-alt ml-0 mr-0">
+                    <div class="container content-padding-left">
+                        <div class="col-md-12 p-0">
+                            <p>@Html.ReplaceLineBreaksForHtml(Model.ServiceIntroText)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row  ml-0 mr-0">
+                    <div class="container content-padding-left">
+                        <div class="col-md-12 p-0">
+                            <p>@Html.ReplaceLineBreaksForHtml(Model.ServiceBodyText)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-0 section-alt-sub">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 stat">
+                            <h4>XX</h4>
+                            <p>Lorem ipsum</p>
+                        </div>
+                        <div class="col-6 stat">
+                            <h4>XX</h4>
+                            <p>Lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
+                <picture>
+                    <source media="(min-width: 576px)" srcset="@(serviceImage.Src + serviceImage.GetCropUrl("Desktop"))">
+                    <source media="(min-width: 0px)" srcset="@(serviceImage.Src + serviceImage.GetCropUrl("Mobile"))">
+                    <img src="@(serviceImage.Src + serviceImage.GetCropUrl("Desktop"))">
+                </picture>
+            </div>
+        </div>
+    </section>
+
+
+</div>

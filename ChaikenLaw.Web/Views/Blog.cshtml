@@ -1,0 +1,73 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Blog>
+
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "master.cshtml";
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+
+    ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>("HeroBannerImage", fallback: Fallback.ToAncestors);
+}
+
+<div class="blog">    
+    <header>
+        @if (Model.HeroBannerDisplayPageTitle != null)
+        {
+            <h1>@Model.Name</h1>
+        }
+        @if (heroBannerImage != null)
+        {
+            <picture>
+                <source media="(min-width: 576px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Desktop"))">
+                <source media="(min-width: 0px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Mobile"))">
+                <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Desktop"))">
+            </picture>
+        }
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-12">
+                    @*<p>
+                        @Model.HeroBannerHeaderText
+                    </p>
+                    <p>
+                        <a class="btn" href="@heroBannerLink.Url">
+                            @Model.HeroBannerButtonText
+                            &nbsp;<i class="fa fa-chevron-right"></i>
+                        </a>
+                    </p>*@
+                </div>
+            </div>
+        </div>
+    </header>
+    <section>        
+        <div class="row ml-0 mr-0">
+            <div class="col-md-6 col-sm-12 p-0">
+                <div class="container content-padding-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>@Model.BlogBodyText</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-0 section-alt">
+                <div class="container content-padding-right">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Umbraco.RenderMacro("LatestBlogposts",
+                             new
+                             {
+                                 startNodeId = Model.Id
+                             })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</div>

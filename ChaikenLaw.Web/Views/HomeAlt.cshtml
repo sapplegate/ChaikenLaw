@@ -1,0 +1,120 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+    @*var backgroundImage = Model.HeroBackgroundImage != null ? Model.HeroBackgroundImage.Url : String.Empty;*@
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+    IPublishedContent homeBodyLink = Model.Value<IPublishedContent>("HomeBodyButtonLink");
+    IPublishedContent homeFeaturedPost = Model.Value<IPublishedContent>("HomeFeaturedPost");
+
+    //var imageUrl = homeFeaturedPost.Value<IPublishedContent>("HeroBannerImage").Url;//.Url;
+}
+
+<div class="home">
+    <header class="container">
+        <div class="row">
+            <div class="col col-lg-8">
+                <p>
+                    @Model.HeroBannerHeaderText
+                </p>
+                <p>
+                    <a class="btn" href="@heroBannerLink.Url">
+                        @Model.HeroBannerButtonText
+                        &nbsp;<i class="fa fa-chevron-right"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="row ml-0 mr-0">
+            <div class="col-md-6 col-sm-12 p-0 section-alt">
+                <img src="@Model.HomeBodyImage.Url" />
+                <div class="container content-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>@Model.HomeBodyTitle</h2>
+                            <p>@Model.HomeBodyText</p>
+                            <a class="btn" href="@homeBodyLink.Url">
+                                @Model.HomeBodyButtonText
+                                &nbsp;<i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-0 d-none d-md-block">
+                <img src="@Model.HomeFeaturedPostImage.Url" />
+                <div class="container content-right">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="press-release-date">@homeFeaturedPost.CreateDate.ToString("MMMM d, yyyy")</div>
+                            <h2 class="mt-3 mb-3">@homeFeaturedPost.Name</h2>
+                            <a class="btn" href="@homeFeaturedPost.Url">
+                                Read On Our Blog
+                                &nbsp;<i class="fa fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        var offsetLeft = $("footer .container").offset().left;
+        var offsetRight = $("footer .container").offset().right;
+
+        $(".content-left").css({ "padding-left": offsetLeft });
+        $(".content-right").css({ "padding-right": offsetLeft });
+    </script>
+}
+
+
+
+@*<section class="section section--full-height background-image-full overlay overlay--dark section--content-center section--thick-border"
+             style="background-image: url('@backgroundImage')">
+        <div class="section__hero-content">
+            <h1>@Model.HeroHeader</h1>
+            <p class="section__description">@Model.HeroDescription</p>
+            @if (Model.HeroCtalink != null)
+            {
+                <a class="button button--border--solid" href="@Model.HeroCtalink.Url">
+                    @Model.HeroCtacaption
+                </a>
+            }
+        </div>
+    </section>
+
+    <section class="section section">
+        @Html.GetGridHtml(Model, "bodyText", "bootstrap3-fluid")
+    </section>
+
+
+    <section class="section section--themed">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="ta-center">
+                    <h2>@Model.FooterHeader</h2>
+                    <p class="section__description mw-640 ma-h-auto">@Model.FooterDescription</p>
+
+                    <a class="button button--border--light_solid" href="@Model.FooterCtalink.Url">
+                        @Model.FooterCtacaption
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+    </section>*@

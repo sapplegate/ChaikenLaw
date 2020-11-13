@@ -1,0 +1,66 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Press>
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+    @*var backgroundImage = Model.HeroBackgroundImage != null ? Model.HeroBackgroundImage.Url : String.Empty;*@
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+
+    ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>("HeroBannerImage", fallback: Fallback.ToAncestors);
+    
+}
+
+<div class="press">
+    
+    <header>
+        @if (Model.HeroBannerDisplayPageTitle != null)
+        {
+            <h1>@Model.Name</h1>
+        }
+        @*@if (Model.HeroBannerImage != null)
+        {
+            <img src="@Model.HeroBannerImage.Url" />
+        }*@
+        @if (heroBannerImage != null)
+        {
+            <picture>     
+                <source media="(min-width: 576px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+                <source media="(min-width: 0px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Mobile"))">
+                <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+            </picture>
+            
+            @*<img src="@Model.HeroBannerImageCrop.Url" />*@
+        }
+        
+    </header>
+    <section>        
+        <div class="row ml-0 mr-0">
+            <div class="col-md-6 col-sm-12 p-0">
+                <div class="container content-padding-left">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>@Model.PressBodyText</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 p-0 section-alt">
+                <div class="container content-padding-right">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Umbraco.RenderMacro("LatestPressReleases",
+                             new
+                             {
+                                 startNodeId = Model.Id
+                             })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+</div>
