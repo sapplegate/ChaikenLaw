@@ -2,21 +2,23 @@
 
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Error>
 
-@{
-    Layout = "master.cshtml";
-}
+@{ Layout = "master.cshtml"; }
 
-@{
-    // get banner data
-    //var headerText = Model.Content.GetPropertyValue("headerText");
-    //var headerSubtext = Model.Content.GetPropertyValue("subtext");
-    //IPublishedContent pageBannerImage = Model.Content.GetPropertyValue<IPublishedContent>("backgroundImage");
-}
 
-<main>
-    <div class="container">
-        <div class="row">
-            @Model.Value("contentHTML")
+<header>
+    <h1>Page Not Found</h1>    
+</header>
+<section>
+    <div class="row ml-0 mr-0">
+        <div class="col-md-12 col-sm-12 p-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Model.Value("contentHTML")
+                        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</main>
+</section>
