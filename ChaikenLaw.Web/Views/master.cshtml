@@ -5,7 +5,7 @@
     // Get basic design settings from the homepage
     var home = (Home)Model.Root();
     @*var font = home.Font;
-    var colorTheme = home.ColorTheme;*@
+        var colorTheme = home.ColorTheme;*@
 
     string footerBannerText = Model.Value<string>("FooterBannerHeaderText");
     string footerBannerButtonText = Model.Value<string>("FooterBannerButtonText");
@@ -18,8 +18,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     @*<title>@Model.Name - @home.Sitename</title>*@
-    <title>Chaiken &amp; Chaiken</title>
-    <meta name="description" content="">
+
+    @if (Model.Root().Id == Model.Id)
+    {
+        <title>Chaiken &amp; Chaiken : @Model.Name</title>
+    }
+    else
+    {
+    <title>Chaiken &amp; Chaiken : @Model.Name</title>
+    }
+
+    
+    @if (Model.Root().Id == Model.Id)
+    {
+        <meta name="description" content="@(Model.Value<string>("HeroBannerHeaderText"))">
+    }
+    else
+    {
+        <meta name="description" content="@(Model.Value<string>("SeoMetaDescription"))">
+    }
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +74,7 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"></a>
             </div>
             <a href="/about-us">About Us</a>
-            <a href="/services">Our Services</a>
+            @*<a href="/services">Our Services</a>*@
             <a href="/our-results">Our Results</a>
             <a href="/contact">Contact Us</a>
             @*<a href="/press">Press</a>
@@ -196,58 +213,58 @@
 </body>
 
 @*<body class="frontpage theme-font-@font theme-color-@colorTheme">
-    <div class="mobile-nav">
-        <nav class="nav-bar">
-            @Html.Partial("~/views/partials/navigation/topNavigation.cshtml")
-        </nav>
-    </div>
-
-    <header class="header">
-
-        <div class="logo">
-            @if (home.SiteLogo != null && !string.IsNullOrEmpty(home.SiteLogo.Url))
-            {
-                <div class="nav-link--home">
-                    <img class="logo-image" src="@home.SiteLogo.Url" alt="@home.Sitename">
-                </div>
-            }
-            else
-            {
-                <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
-            }
+        <div class="mobile-nav">
+            <nav class="nav-bar">
+                @Html.Partial("~/views/partials/navigation/topNavigation.cshtml")
+            </nav>
         </div>
 
-        <nav class="nav-bar top-nav">
-            @Html.Partial("~/Views/Partials/Navigation/TopNavigation.cshtml")
-        </nav>
+        <header class="header">
 
-        <div class="mobile-nav-handler">
-            <div class="hamburger lines" id="toggle-nav">
-                <span></span>
+            <div class="logo">
+                @if (home.SiteLogo != null && !string.IsNullOrEmpty(home.SiteLogo.Url))
+                {
+                    <div class="nav-link--home">
+                        <img class="logo-image" src="@home.SiteLogo.Url" alt="@home.Sitename">
+                    </div>
+                }
+                else
+                {
+                    <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
+                }
             </div>
-        </div>
 
-    </header>
+            <nav class="nav-bar top-nav">
+                @Html.Partial("~/Views/Partials/Navigation/TopNavigation.cshtml")
+            </nav>
 
-    <main>
-        @RenderBody()
-    </main>
-
-    <footer class="section--themed">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 ta-center">
-                    @home.FooterAddress
+            <div class="mobile-nav-handler">
+                <div class="hamburger lines" id="toggle-nav">
+                    <span></span>
                 </div>
             </div>
-        </div>
-    </footer>
 
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-    <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
+        </header>
 
-</body>*@
+        <main>
+            @RenderBody()
+        </main>
+
+        <footer class="section--themed">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 ta-center">
+                        @home.FooterAddress
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+        <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
+
+    </body>*@
 
 </html>

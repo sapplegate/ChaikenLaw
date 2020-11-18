@@ -17,8 +17,8 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Umbraco.ModelsBuilder.Embedded;
 
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "2bbd351e8013f5b7")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "c207406ff5284031")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
 
 namespace Umbraco.Web.PublishedModels
 {
@@ -440,41 +440,6 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
-
-		///<summary>
-		/// Address
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
-		[ImplementPropertyType("footerAddress")]
-		public string FooterAddress => this.Value<string>("footerAddress");
-
-		///<summary>
-		/// Call To Action Caption: Caption on the Call To Action Button
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
-		[ImplementPropertyType("footerCTACaption")]
-		public string FooterCtacaption => this.Value<string>("footerCTACaption");
-
-		///<summary>
-		/// Call To Action Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
-		[ImplementPropertyType("FooterCtalink")]
-		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent FooterCtalink => this.Value<global::Umbraco.Core.Models.PublishedContent.IPublishedContent>("FooterCtalink");
-
-		///<summary>
-		/// Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
-		[ImplementPropertyType("footerDescription")]
-		public string FooterDescription => this.Value<string>("footerDescription");
-
-		///<summary>
-		/// Header
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
-		[ImplementPropertyType("footerHeader")]
-		public string FooterHeader => this.Value<string>("footerHeader");
 
 		///<summary>
 		/// Button Link
