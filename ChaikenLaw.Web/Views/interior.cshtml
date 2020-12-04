@@ -8,7 +8,7 @@
     Layout = "master.cshtml";
 
     IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
-    var startNode = Umbraco.Content(Model.Id);
+    var startNode = Umbraco.Content(Model.Id); 
     var results = startNode.Children.OrderBy(x => x.CreateDate).ToList();
 
     ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>("HeroBannerImage", fallback: Fallback.ToAncestors);
