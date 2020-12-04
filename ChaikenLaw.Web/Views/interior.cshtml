@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Interior>
+
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+@using Umbraco.Core.PropertyEditors.ValueConverters
+
+@{
+    Layout = "master.cshtml";
+
+    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+    var startNode = Umbraco.Content(Model.Id);
+    var results = startNode.Children.OrderBy(x => x.CreateDate).ToList();
+
+    ImageCropperValue heroBannerImage = Model.Value<ImageCropperValue>("HeroBannerImage", fallback: Fallback.ToAncestors);
+}
+
+<div class="interior">
+
+    <header>
+        @if (Model.HeroBannerDisplayPageTitle != null)
+        {
+            <h1>@Model.Name</h1>
+        }
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-8">
+                    <p>
+                        @Html.ReplaceLineBreaksForHtml(Model.HeroBannerHeaderText)
+                    </p>
+                </div>
+            </div>
+        </div>
+        @if (heroBannerImage != null)
+        {
+            <picture>
+                <source media="(min-width: 576px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+                <source media="(min-width: 0px)" srcset="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Mobile"))">
+                <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl("Desktop"))">
+            </picture>
+        }
+
+    </header>
+    <section>
+        <div class="row ml-0 mr-0">
+            <div class="col-md-12 col-sm-12 p-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>@Html.ReplaceLineBreaksForHtml(Model.InteriorBodyText)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

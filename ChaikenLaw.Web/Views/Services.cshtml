@@ -10,7 +10,7 @@
 
     IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
     var startNode = Umbraco.Content(Model.Id);
-    var services = startNode.Children.OrderBy(x => x.CreateDate).ToList();
+    var services = startNode.Children.OrderBy(x => x.SortOrder).ToList();
 
     int serviceIndex = 1;
 

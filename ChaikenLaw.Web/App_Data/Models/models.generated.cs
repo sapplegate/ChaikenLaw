@@ -17,7 +17,7 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Umbraco.ModelsBuilder.Embedded;
 
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "c207406ff5284031")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "44f0a53e3943fa03")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
 
 namespace Umbraco.Web.PublishedModels
@@ -985,7 +985,7 @@ namespace Umbraco.Web.PublishedModels
 
 	/// <summary>Interior</summary>
 	[PublishedModel("interior")]
-	public partial class Interior : PublishedContentModel, INavigationBase
+	public partial class Interior : PublishedContentModel, IHeroBanner, INavigationBase
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -1007,6 +1007,48 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// Body Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("interiorBodyText")]
+		public string InteriorBodyText => this.Value<string>("interiorBodyText");
+
+		///<summary>
+		/// Button Link: The page the button links to
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerButtonLink")]
+		public global::Umbraco.Core.Models.PublishedContent.IPublishedContent HeroBannerButtonLink => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerButtonLink(this);
+
+		///<summary>
+		/// Button Text: The caption on the button
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerButtonText")]
+		public string HeroBannerButtonText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerButtonText(this);
+
+		///<summary>
+		/// Display Page Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerDisplayPageTitle")]
+		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
+
+		///<summary>
+		/// Header Text: This is the main text for the hero area
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderText")]
+		public string HeroBannerHeaderText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderText(this);
+
+		///<summary>
+		/// Banner Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerImage")]
+		public global::Umbraco.Core.PropertyEditors.ValueConverters.ImageCropperValue HeroBannerImage => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerImage(this);
 
 		///<summary>
 		/// Hide in Main Navigation: If you don't want this page to appear in the navigation, check this box
