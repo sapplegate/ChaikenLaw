@@ -26,21 +26,27 @@
                 <img src="@(heroBannerImage.Src + heroBannerImage.GetCropUrl(" Desktop"))">
             </picture>
         }
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-12">
-                    @*<p>
-                        @Model.HeroBannerHeaderText
-                    </p>
-                    <p>
-                        <a class="btn" href="@heroBannerLink.Url">
-                            @Model.HeroBannerButtonText
-                            &nbsp;<i class="fa fa-chevron-right"></i>
-                        </a>
-                    </p>*@
+        @if (Model.HeroBannerHeaderText != null && !String.IsNullOrEmpty(Model.HeroBannerHeaderText))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col col-lg-8">
+                        <p>
+                            @Html.ReplaceLineBreaksForHtml(Model.HeroBannerHeaderText)
+                        </p>
+                        @if (heroBannerLink != null && Model.HeroBannerButtonText != null && !String.IsNullOrEmpty(Model.HeroBannerButtonText))
+                        {
+                            <p>
+                                <a class="btn" href="@heroBannerLink.Url">
+                                    @Model.HeroBannerButtonText
+                                    &nbsp;<i class="fa fa-chevron-right"></i>
+                                </a>
+                            </p>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </header>
     <section>        
         <div class="row ml-0 mr-0">
