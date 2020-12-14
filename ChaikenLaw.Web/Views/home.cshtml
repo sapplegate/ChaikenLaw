@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col col-lg-8">
                 <p>
-                    @Model.HeroBannerHeaderText
+                    @Html.ReplaceLineBreaksForHtml(Model.HeroBannerHeaderText)
                 </p>
                 <p>
                     <a class="btn" href="@heroBannerLink.Url">

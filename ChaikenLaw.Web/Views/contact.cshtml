@@ -16,7 +16,7 @@
 
 @*@Html.Partial("~/Views/Partials/SectionHeader.cshtml")*@
 
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <div class="contact">
 
@@ -68,11 +68,17 @@
 
         $(document).ready(function () {
             $('a.btn-submit').click(function () {
-                $('form').submit();
+                var response = grecaptcha.getResponse();
+
+                if (response.length == 0) {
+                    $("#error-captcha").show();
+                }
+                else
+                {
+                    $("#error-captcha").hide();
+                    $('form').submit();
+                }
             });
-
-            
-
         });
 
         function OnSuccess(response) {
