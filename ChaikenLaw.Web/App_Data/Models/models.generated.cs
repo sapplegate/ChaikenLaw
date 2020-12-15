@@ -17,8 +17,8 @@ using Umbraco.Core.Models.PublishedContent;
 using Umbraco.Web;
 using Umbraco.ModelsBuilder.Embedded;
 
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "44f0a53e3943fa03")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "9e03c778a37e7934")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedModels
 {
@@ -512,6 +512,13 @@ namespace Umbraco.Web.PublishedModels
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
 
 		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
+
+		///<summary>
 		/// Header Text: This is the main text for the hero area
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
@@ -723,6 +730,13 @@ namespace Umbraco.Web.PublishedModels
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
 
 		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
+
+		///<summary>
 		/// Header Text: This is the main text for the hero area
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
@@ -833,6 +847,13 @@ namespace Umbraco.Web.PublishedModels
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
 
 		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
+
+		///<summary>
 		/// Header Text: This is the main text for the hero area
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
@@ -920,6 +941,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
 		[ImplementPropertyType("heroBannerDisplayPageTitle")]
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
+
+		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
 
 		///<summary>
 		/// Header Text: This is the main text for the hero area
@@ -1037,6 +1065,13 @@ namespace Umbraco.Web.PublishedModels
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
 
 		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
+
+		///<summary>
 		/// Header Text: This is the main text for the hero area
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
@@ -1080,6 +1115,10 @@ namespace Umbraco.Web.PublishedModels
 		/// <summary>Display Page Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
 		bool HeroBannerDisplayPageTitle { get; }
+
+		/// <summary>Header Highlight Text</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		string HeroBannerHeaderHighlightText { get; }
 
 		/// <summary>Header Text</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
@@ -1147,6 +1186,17 @@ namespace Umbraco.Web.PublishedModels
 		/// <summary>Static getter for Display Page Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
 		public static bool GetHeroBannerDisplayPageTitle(IHeroBanner that) => that.Value<bool>("heroBannerDisplayPageTitle");
+
+		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => GetHeroBannerHeaderHighlightText(this);
+
+		/// <summary>Static getter for Header Highlight Text</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		public static string GetHeroBannerHeaderHighlightText(IHeroBanner that) => that.Value<string>("heroBannerHeaderHighlightText");
 
 		///<summary>
 		/// Header Text: This is the main text for the hero area
@@ -1223,6 +1273,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
 		[ImplementPropertyType("heroBannerDisplayPageTitle")]
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
+
+		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
 
 		///<summary>
 		/// Header Text: This is the main text for the hero area
@@ -1366,6 +1423,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
 		[ImplementPropertyType("heroBannerDisplayPageTitle")]
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
+
+		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
 
 		///<summary>
 		/// Header Text: This is the main text for the hero area
@@ -1601,6 +1665,13 @@ namespace Umbraco.Web.PublishedModels
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
 
 		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
+
+		///<summary>
 		/// Header Text: This is the main text for the hero area
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
@@ -1695,6 +1766,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
 		[ImplementPropertyType("heroBannerDisplayPageTitle")]
 		public bool HeroBannerDisplayPageTitle => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerDisplayPageTitle(this);
+
+		///<summary>
+		/// Header Highlight Text: This is the bolded and larger text above the Header Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "8.9.1")]
+		[ImplementPropertyType("heroBannerHeaderHighlightText")]
+		public string HeroBannerHeaderHighlightText => global::Umbraco.Web.PublishedModels.HeroBanner.GetHeroBannerHeaderHighlightText(this);
 
 		///<summary>
 		/// Header Text: This is the main text for the hero area

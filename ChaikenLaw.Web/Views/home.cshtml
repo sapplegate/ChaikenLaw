@@ -4,17 +4,23 @@
     Layout = "master.cshtml";
     @*var backgroundImage = Model.HeroBackgroundImage != null ? Model.HeroBackgroundImage.Url : String.Empty;*@
 
-    IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
-    IPublishedContent homeBodyLink = Model.Value<IPublishedContent>("HomeBodyButtonLink");
-    IPublishedContent homeFeaturedPost = Model.Value<IPublishedContent>("HomeFeaturedPost");
+IPublishedContent heroBannerLink = Model.Value<IPublishedContent>("HeroBannerButtonLink");
+IPublishedContent homeBodyLink = Model.Value<IPublishedContent>("HomeBodyButtonLink");
+IPublishedContent homeFeaturedPost = Model.Value<IPublishedContent>("HomeFeaturedPost");
 
-    //var imageUrl = homeFeaturedPost.Value<IPublishedContent>("HeroBannerImage").Url;//.Url;
+//var imageUrl = homeFeaturedPost.Value<IPublishedContent>("HeroBannerImage").Url;//.Url;
 }
 
 <div class="home">
     <header class="container">
         <div class="row">
-            <div class="col col-lg-8">
+            <div class="col col-lg-9">
+                @if (!String.IsNullOrEmpty(Model.HeroBannerHeaderHighlightText))
+                {
+                <p class="hero-highlight">
+                    @Model.HeroBannerHeaderHighlightText
+                </p>
+                }
                 <p>
                     @Html.ReplaceLineBreaksForHtml(Model.HeroBannerHeaderText)
                 </p>

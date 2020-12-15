@@ -34,35 +34,36 @@
     </header>
     <section>
         <div class="row ml-0 mr-0">
+
+            <div class="col-md-6 col-sm-12 p-0 section-alt">
+                @*<div class="row ml-0 mr-0 section-alt-sub">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6 stat">
+                            <h4>XX</h4>
+                            <p>Lorem ipsum</p>
+                        </div>
+                        <div class="col-6 stat">
+                            <h4>XX</h4>
+                            <p>Lorem ipsum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+                <div class="row section-alt ml-0 mr-0">
+                    <div class="container content-padding-left">
+                        <div class="col-md-12 p-0">
+                            <p>@Html.ReplaceLineBreaksForHtml(Model.ServiceIntroText)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6 col-sm-12 p-0">
                 <picture>
                     <source media="(min-width: 576px)" srcset="@(serviceImage.Src + serviceImage.GetCropUrl("Desktop"))">
                     <source media="(min-width: 0px)" srcset="@(serviceImage.Src + serviceImage.GetCropUrl("Mobile"))">
                     <img src="@(serviceImage.Src + serviceImage.GetCropUrl("Desktop"))">
                 </picture>
-            </div>
-            <div class="col-md-6 col-sm-12 p-0 section-alt">
-                @*<div class="row ml-0 mr-0 section-alt-sub">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-6 stat">
-                                <h4>XX</h4>
-                                <p>Lorem ipsum</p>
-                            </div>
-                            <div class="col-6 stat">
-                                <h4>XX</h4>
-                                <p>Lorem ipsum</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-                <div class="row section-alt ml-0 mr-0">
-                    <div class="container content-padding-right">
-                        <div class="col-md-12">
-                            <p>@Html.ReplaceLineBreaksForHtml(Model.ServiceIntroText)</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
