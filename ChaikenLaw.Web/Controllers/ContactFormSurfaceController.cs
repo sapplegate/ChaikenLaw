@@ -51,7 +51,8 @@ namespace ChaikenLaw.Web.Controllers
 
                     var infoRecipients = new List<EmailAddress>
                     {
-                        new EmailAddress("rchaiken@chaikenlaw.com", "Robert Chaiken")
+                        new EmailAddress("rchaiken@chaikenlaw.com", "Robert Chaiken"),
+                        new EmailAddress("kchaiken@chaikenlaw.com", "Kenneth Chaiken")
                     };
                     infoMsg.AddTos(infoRecipients);
                     infoMsg.AddBcc("sapplegate86@gmail.com", "Steven Applegate");
