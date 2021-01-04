@@ -64,7 +64,7 @@
                     </div>
                 </div>*@
                 <picture>
-                    <source media="(min-width: 576px)" srcset="@(serviceImage.Src + serviceImage.GetCropUrl("Desktop"))">
+                    <source media="(min-width: 576px)" srcset="@(serviceImage.Src + "?anchor=center&mode=crop&width=1200&height=2200")">
                     <source media="(min-width: 0px)" srcset="@(serviceImage.Src + serviceImage.GetCropUrl("Mobile"))">
                     <img src="@(serviceImage.Src + serviceImage.GetCropUrl("Desktop"))">
                 </picture>

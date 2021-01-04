@@ -8,6 +8,8 @@ using System.Configuration;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace ChaikenLaw.Web.Controllers
 {
@@ -27,6 +29,18 @@ namespace ChaikenLaw.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var captchaResponse = Request["g-recaptcha-response"];
+                    string secretKey = "6LfNnQYaAAAAAJuy17tgwbMZgDhSRWS3Hex0-vnv";
+                    var captchaClient = new WebClient();
+                    var result = captchaClient.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, captchaResponse));
+                    var obj = JObject.Parse(result);
+                    var status = (bool)obj.SelectToken("success");
+
+                    if (!status)
+                    {
+                        return Json(new { success = true, id = 123 });
+                    }
+
                     var msg = new SendGridMessage();
                     msg.SetFrom(new EmailAddress("info@chaikenlaw.com", "Chaiken & Chaiken"));
 
